@@ -1,0 +1,1 @@
+env[ANSIBLE_CONFIG]="$XDG_CONFIG_HOME_T"/ansible/ansible.cfg

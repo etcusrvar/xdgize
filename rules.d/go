@@ -1,0 +1,1 @@
+env[GOPATH]="$XDG_DATA_HOME_T"/go

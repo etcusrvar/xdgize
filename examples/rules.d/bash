@@ -1,0 +1,10 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2034
+
+# We can't use the default shebang "#!/usr/bin/env bash"--
+# we need an absolute path
+header=$(printf "#!/usr/bin/bash\nset -euo pipefail")
+
+env[HISTFILE]="$XDG_DATA_HOME_T"/bash_history
+
+pre_args+=("--init-file" "$XDG_CONFIG_HOME_T"/bashrc)

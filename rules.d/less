@@ -1,0 +1,1 @@
+env[LESSHISTFILE]="$XDG_DATA_HOME_T"/less_history

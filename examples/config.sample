@@ -1,0 +1,27 @@
+# shellcheck shell=bash
+
+# Sample "$XDG_CONFIG_HOME"/xdgize/config
+
+## Destination output directory
+# dest=~/bin
+
+## Shebang + script options
+# header="#!/usr/bin/bash"
+# header="$(printf "#!/usr/bin/bash\nset -euo pipefail")"
+
+## Add an extra rules directory
+# add_rules_dir "~/xdgize/rules.d"
+
+## Flags
+
+## out_file - Create an output file. If 0, no output file is created.
+# out_file=0
+# out_file=1
+
+## quiet - If 0, messages will be displayed. If 1, they won't.
+# quiet=0
+# quiet=1
+
+## verbose - If 1, the output script's contents will be displayed. If 0, they won't.
+# verbose=0
+# verbose=1

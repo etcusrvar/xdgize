@@ -1,0 +1,2 @@
+env[WGETRC]="$XDG_CONFIG_HOME_T"/wgetrc
+pre_args+=('--hsts-file='"$XDG_CACHE_HOME_T"'/wget-hsts')

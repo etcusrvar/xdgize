@@ -1,0 +1,1 @@
+env[PYENV_ROOT]="$XDG_DATA_HOME_T"/pyenv

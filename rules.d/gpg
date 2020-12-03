@@ -1,0 +1,1 @@
+env[GNUPGHOME]="$XDG_CONFIG_HOME_T"/gnupg

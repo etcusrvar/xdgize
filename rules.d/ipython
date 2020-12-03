@@ -1,0 +1,1 @@
+env[IPYTHONDIR]="$XDG_CONFIG_HOME_T"/ipython

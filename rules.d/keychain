@@ -1,0 +1,1 @@
+pre_args+=('--absolute --dir "$XDG_RUNTIME_DIR"/keychain')

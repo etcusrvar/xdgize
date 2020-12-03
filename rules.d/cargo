@@ -1,0 +1,2 @@
+env[CARGO_HOME]="$XDG_DATA_HOME_T"/cargo
+env[RUSTUP_HOME]="$XDG_DATA_HOME_T"/rustup

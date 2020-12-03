@@ -1,0 +1,16 @@
+# shellcheck shell=bash
+# shellcheck disable=SC2016,SC2034,SC2154
+
+env[LESSKEY]="$XDG_CONFIG_HOME_T"/lesskey
+
+# These environment variables are not related to the XDG spec,
+# but they can be defined here nevertheless.
+env[LESS_TERMCAP_mb]='"$(printf "\e[1;31m")"'
+env[LESS_TERMCAP_md]='"$(printf "\e[1;31m")"'
+env[LESS_TERMCAP_me]='"$(printf "\e[0m")"'
+env[LESS_TERMCAP_se]='"$(printf "\e[0m")"'
+env[LESS_TERMCAP_so]='"$(printf "\e[1;44;33m")"'
+env[LESS_TERMCAP_ue]='"$(printf "\e[0m")"'
+env[LESS_TERMCAP_us]='"$(printf "\e[1;32m")"'
+env[LESS]='"-FgiMqRSX -x2 -z-6 --no-histdups"'
+env[LESSOPEN]='"| /usr/bin/src-hilite-lesspipe.sh %s"'
