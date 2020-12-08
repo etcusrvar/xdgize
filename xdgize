@@ -3,7 +3,7 @@ set -o errexit -o nounset
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 readonly APP=xdgize
-readonly VERSION="0.1"
+readonly VERSION="0.2"
 if [[ -z "${1:-}" ]]; then
   printf "%s %s\n" "$APP" "$VERSION"
   printf "usage: %s COMMAND\n" "${BASH_SOURCE[0]}"
@@ -11,7 +11,7 @@ if [[ -z "${1:-}" ]]; then
 fi
 
 readonly CMD="$1"
-if ! hash "$CMD" 2>/dev/null; then
+if ! command -v "$CMD" &>/dev/null; then
   printf "%s: not found\n" "$CMD"
   exit 1
 fi
@@ -47,7 +47,7 @@ add_rules_dir() {
 
 msg() {
   ((quiet)) && return
-  printf "==> %s\n" "$*"
+  printf "==> %s\n" "$*" >&2
 }
 
 source_() {
@@ -58,17 +58,15 @@ source_() {
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+source_ /etc/"$APP"/config
 add_rules_dir /etc/"$APP"/rules.d
-if [[ -L "${BASH_SOURCE[0]}" ]] && hash realpath 2>/dev/null; then
-  add_rules_dir "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"/rules.d
-fi
 add_rules_dir "$HERE"/rules.d
 
 readonly CONFIG_DIR="$XDG_CONFIG_HOME"/"$APP"
 source_ "$CONFIG_DIR"/config
 add_rules_dir "$CONFIG_DIR"/rules.d
 
-# remove $dest from $PATH
+# remove $dest from $PATH (for `command -v`)
 PATH=:$PATH:
 PATH=${PATH//:$dest:/:}
 PATH=${PATH#:}
@@ -95,9 +93,7 @@ script_lines() {
   [[ -n "${pre_exec[*]:-}" ]] && printf "%s\n" "${pre_exec[@]}"
 
   # exec
-  local wcmd
-  wcmd="$(which "$CMD")"
-  local -a line=("exec -a '$CMD' '$wcmd'")
+  local -a line=("exec -a '$CMD' '$(command -v "$CMD")'")
   [[ -n "${pre_args[*]:-}" ]] && line+=("${pre_args[@]}")
   line+=('"$@"')
   [[ -n "${post_args[*]:-}" ]] && line+=("${post_args[@]}")
