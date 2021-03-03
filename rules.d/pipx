@@ -1,0 +1,2 @@
+env[PIPX_BIN_DIR]="$XDG_DATA_HOME_T"/pipx/bin
+env[PIPX_HOME]="$XDG_DATA_HOME_T"/pipx
